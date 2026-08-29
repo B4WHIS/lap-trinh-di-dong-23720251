@@ -1,4 +1,5 @@
 import Counter from "@/components/Counter";
+import TodoBasic from "@/components/TodoBasic";
 import UserCard from "@/components/UserCard";
 import { View } from "react-native";
 
@@ -14,6 +15,7 @@ export default function Index() {
       <UserCard name="Thái Bình" age={18} isAdmin={true} />
       <UserCard name="Hương Giang" age={17} isAdmin={false} />
       <Counter />
+      <TodoBasic />
     </View>
   );
 }
