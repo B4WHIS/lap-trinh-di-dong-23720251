@@ -6,7 +6,11 @@
       "@/*": [
         "./*"
       ]
-    }
+    },
+    "jsx": "react-jsx",
+    "customConditions": [
+      "react-native-strict-api"
+    ]
   },
   "include": [
     "**/*.ts",
