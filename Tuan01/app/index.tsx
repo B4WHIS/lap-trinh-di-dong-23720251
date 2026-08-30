@@ -1,4 +1,5 @@
 import Counter from "@/components/Counter";
+import MyButton from "@/components/MyButton";
 import TodoBasic from "@/components/TodoBasic";
 import UserCard from "@/components/UserCard";
 import { View } from "react-native";
@@ -16,6 +17,14 @@ export default function Index() {
       <UserCard name="Hương Giang" age={17} isAdmin={false} />
       <Counter />
       <TodoBasic />
+      <MyButton label="Nút test" onPress={() => alert("Nút xanh")} />
+      <MyButton
+        label="Nút test"
+        color="red"
+        onPress={() => {
+          alert("Nút đỏ");
+        }}
+      />
     </View>
   );
 }
