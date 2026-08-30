@@ -1,4 +1,5 @@
 import Counter from "@/components/Counter";
+import GenderSelector from "@/components/GenderSelector";
 import LiveInput from "@/components/LiveInput";
 import LoadingContainerProps from "@/components/LoadingContainerProps";
 import MyButton from "@/components/MyButton";
@@ -15,7 +16,7 @@ export default function Index() {
         alignItems: "center",
       }}
     >
-      <UserCard name="Thái Bình" age={18} isAdmin={true} />
+      {/* <UserCard name="Thái Bình" age={18} isAdmin={true} />
       <UserCard name="Hương Giang" age={17} isAdmin={false} />
       <Counter />
       <TodoBasic />
@@ -30,7 +31,8 @@ export default function Index() {
       <LiveInput />
       <LoadingContainerProps isLoading={true}>
         <Text>Đã tải dữ liệu</Text>
-      </LoadingContainerProps>
+      </LoadingContainerProps> */}
+      <GenderSelector />
     </View>
   );
 }
