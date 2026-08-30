@@ -1,4 +1,5 @@
 import Counter from "@/components/Counter";
+import LiveInput from "@/components/LiveInput";
 import MyButton from "@/components/MyButton";
 import TodoBasic from "@/components/TodoBasic";
 import UserCard from "@/components/UserCard";
@@ -25,6 +26,7 @@ export default function Index() {
           alert("Nút đỏ");
         }}
       />
+      <LiveInput />
     </View>
   );
 }
