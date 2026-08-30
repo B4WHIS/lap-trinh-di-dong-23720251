@@ -1,9 +1,10 @@
 import Counter from "@/components/Counter";
 import LiveInput from "@/components/LiveInput";
+import LoadingContainerProps from "@/components/LoadingContainerProps";
 import MyButton from "@/components/MyButton";
 import TodoBasic from "@/components/TodoBasic";
 import UserCard from "@/components/UserCard";
-import { View } from "react-native";
+import { View, Text } from "react-native";
 
 export default function Index() {
   return (
@@ -27,6 +28,9 @@ export default function Index() {
         }}
       />
       <LiveInput />
+      <LoadingContainerProps isLoading={true}>
+        <Text>Đã tải dữ liệu</Text>
+      </LoadingContainerProps>
     </View>
   );
 }

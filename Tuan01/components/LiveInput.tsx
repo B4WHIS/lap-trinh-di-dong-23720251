@@ -10,6 +10,7 @@ const LiveInput = () => {
         value={text}
         onChangeText={setText}
         placeholder="Nhập nội dung tại đây..."
+        placeholderTextColor={"black"}
         style={{
           borderWidth: 1,
           borderColor: "black",
