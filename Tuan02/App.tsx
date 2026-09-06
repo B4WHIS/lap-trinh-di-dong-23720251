@@ -2,12 +2,14 @@ import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
 import NewsFeed from "./components/NewsFeed";
 import UserProfile from "./components/UserProfile";
+import ProductSearch from "./components/ProductSearch";
 
 export default function App() {
   return (
     <View style={styles.container}>
       {/* <NewsFeed /> */}
-      <UserProfile />
+      {/* <UserProfile /> */}
+      <ProductSearch />
       <StatusBar style="auto" />
     </View>
   );
