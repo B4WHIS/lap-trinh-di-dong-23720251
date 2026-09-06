@@ -3,6 +3,7 @@ import { StyleSheet, Text, View } from "react-native";
 import NewsFeed from "./components/NewsFeed";
 import UserProfile from "./components/UserProfile";
 import ProductSearch from "./components/ProductSearch";
+import ApiErrorHandling from "./components/ApiErrorHandling";
 
 export default function App() {
   return (
@@ -10,6 +11,7 @@ export default function App() {
       {/* <NewsFeed /> */}
       {/* <UserProfile /> */}
       <ProductSearch />
+      <ApiErrorHandling />
       <StatusBar style="auto" />
     </View>
   );
