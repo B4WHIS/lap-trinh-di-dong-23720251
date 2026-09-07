@@ -30,11 +30,11 @@ const PaginationList = () => {
         pham
       </Text>
       <FlatList
-        style={{ padding: 20, margin: 10, borderWidth: 1 }}
+        style={{ padding: 20, margin: 10 }}
         data={mockResponse.data}
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => (
-          <Text>
+          <Text style={{ padding: 20, margin: 10, borderWidth: 1 }}>
             {item.title} - {item.price}
           </Text>
         )}
