@@ -4,15 +4,17 @@ import NewsFeed from "./components/NewsFeed";
 import UserProfile from "./components/UserProfile";
 import ProductSearch from "./components/ProductSearch";
 import ApiErrorHandling from "./components/ApiErrorHandling";
+import FilteredList from "./components/FilteredList";
 
 export default function App() {
   return (
     <View style={styles.container}>
       {/* <NewsFeed /> */}
       {/* <UserProfile /> */}
-      <ProductSearch />
-      <ApiErrorHandling />
+      {/* <ProductSearch />
+      <ApiErrorHandling /> */}
       <StatusBar style="auto" />
+      <FilteredList />
     </View>
   );
 }
