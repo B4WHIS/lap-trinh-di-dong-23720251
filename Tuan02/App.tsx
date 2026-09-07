@@ -6,6 +6,7 @@ import ProductSearch from "./components/ProductSearch";
 import ApiErrorHandling from "./components/ApiErrorHandling";
 import FilteredList from "./components/FilteredList";
 import PaginationList from "./components/PaginationList";
+import PullToRefreshList from "./components/PullToRefreshList";
 
 export default function App() {
   return (
@@ -16,7 +17,8 @@ export default function App() {
       <ApiErrorHandling /> */}
       <StatusBar style="auto" />
       {/* <FilteredList /> */}
-      <PaginationList />
+      {/* <PaginationList /> */}
+      <PullToRefreshList />
     </View>
   );
 }
