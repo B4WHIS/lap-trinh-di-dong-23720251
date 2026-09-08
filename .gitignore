@@ -1,0 +1,27 @@
+# Dependencies
+node_modules/
+*/node_modules/
+
+# Expo
+.expo/
+*/.expo/
+dist/
+web-build/
+
+# Native
+*.orig.*
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+
+# Temporary & Logs
+*.log
+.DS_Store
+Thumbs.db
+*.docx
+AGENTS.md
+GEMINI.md
+CLAUDE.md
+.claude/
