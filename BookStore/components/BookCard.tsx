@@ -1,26 +1,31 @@
 import React from "react";
 import { StyleSheet, View, Text, Image } from "react-native";
 
+interface BookCardProps {
+  title: string;
+  author: string;
+  price: string;
+  coverUrl: string;
+}
 
-
-const BookCard = () => {
+const BookCard = ({ title, author, price, coverUrl }: BookCardProps) => {
   return (
     <View style={styles.BookCard}>
       <Image
         style={styles.Image}
         source={{
-          uri: "https://www.nxbtre.com.vn/Images/Book/nxbtre_full_25412024_024109.jpg",
+          uri: coverUrl,
         }}
       ></Image>
       <View style={styles.InfoContainer}>
         <View style={styles.Info}>
           <Text style={styles.BookTitle} numberOfLines={2}>
-            Tiệm sách của nàng
+            {title}
           </Text>
-          <Text style={styles.BookAuthor}>Nguyễn Nhật Ánh</Text>
+          <Text style={styles.BookAuthor}>{author}</Text>
         </View>
         <View>
-          <Text style={styles.PriceText}>100.000đ</Text>
+          <Text style={styles.PriceText}>{price}</Text>
         </View>
       </View>
     </View>

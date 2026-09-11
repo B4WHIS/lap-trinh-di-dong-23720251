@@ -4,8 +4,8 @@ import { StyleSheet, View, Text } from "react-native";
 const CategoryChips = () => {
   return (
     <View style={styles.categoryContainer}>
-      <Text style={styles.categoryTitle}>Catagory chips</Text>
-      <View>
+      <Text style={styles.categoryTitle}>Category chips</Text>
+      <View style={styles.category}>
         <Text style={styles.categoryText}>Văn học</Text>
         <Text style={styles.categoryText}>Kinh tế</Text>
         <Text style={styles.categoryText}>Thiếu nhi</Text>
@@ -21,7 +21,6 @@ const styles = StyleSheet.create({
   categoryContainer: {
     flexDirection: "row",
     flexWrap: "wrap",
-    gap: 4,
     borderWidth: 2,
     margin: 20,
     padding: 20,
@@ -29,7 +28,15 @@ const styles = StyleSheet.create({
     borderColor: "#f08c8c",
     borderStyle: "dashed",
   },
-  categoryTitle: {},
+  categoryTitle: {
+    position: "absolute",
+    top: -18,
+    textAlign: "center",
+    left: 0,
+    right: 0,
+    fontWeight: "bold",
+  },
+  category: { flexDirection: "row", flexWrap: "wrap", gap: 8, flex: 1 },
   categoryText: {
     alignContent: "center",
     alignItems: "center",
