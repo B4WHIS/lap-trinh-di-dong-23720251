@@ -58,6 +58,7 @@ const styles = StyleSheet.create({
   BookTitle: { fontSize: 16, fontWeight: "bold", color: "#a35a5a" },
   BookAuthor: { fontSize: 13, color: "#b06262" },
   PriceText: { fontWeight: "bold", color: "#966464" },
+  
 });
 
 export default BookCard;
