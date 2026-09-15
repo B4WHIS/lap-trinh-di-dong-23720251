@@ -14,6 +14,7 @@ export default function App() {
       <Header />
       <ScrollView>
         <CategoryChips />
+        {/*  */}
         <View style={styles.girdContainer}>
           <BookGridCard
             title="Tôi Thấy Hoa Vàng Trên Cỏ Xanh"
