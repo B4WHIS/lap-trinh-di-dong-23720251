@@ -6,18 +6,19 @@ import CategoryChips from "./components/CategoryChips";
 import BookGridCard from "./components/BookGridCard";
 import FloatingCartButton from "./components/FloatingCartButton";
 import BookDetailScreen from "./components/BookDetailScreen";
+import BottomTabBar from "./components/BottomTabBar";
 
 export default function App() {
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar style="auto" />
       <Header />
-      {/* <ScrollView> */}
-      {/* <CategoryChips /> */}
-      <BookDetailScreen />
-      {/*  */}
-      {/* <View style={styles.girdContainer}> */}
-      {/* <BookGridCard
+      <ScrollView>
+        <CategoryChips />
+        {/* <BookDetailScreen /> */}
+        {/*  */}
+        <View style={styles.girdContainer}>
+          <BookGridCard
             title="Tôi Thấy Hoa Vàng Trên Cỏ Xanh"
             author="Nguyễn Nhật Ánh"
             price="120.000₫"
@@ -52,10 +53,11 @@ export default function App() {
             author="Michael F. D. Young"
             price="135.000₫"
             coverUrl="https://www.netabooks.vn/Data/Sites/1/Product/24554/gianh-lai-tri-thuc-01.jpg"
-          /> */}
-      {/* </View> */}
-      {/* </ScrollView> */}
-      {/* <FloatingCartButton /> */}
+          />
+        </View>
+      </ScrollView>
+      <BottomTabBar />
+      <FloatingCartButton />
     </SafeAreaView>
   );
 }
