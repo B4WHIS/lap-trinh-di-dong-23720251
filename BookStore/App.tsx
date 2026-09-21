@@ -7,6 +7,7 @@ import BookGridCard from "./components/BookGridCard";
 import FloatingCartButton from "./components/FloatingCartButton";
 import BookDetailScreen from "./components/BookDetailScreen";
 import BottomTabBar from "./components/BottomTabBar";
+import CartScreen from "./components/CartScreen";
 
 export default function App() {
   return (
@@ -14,6 +15,7 @@ export default function App() {
       <StatusBar style="auto" />
       <Header />
       <ScrollView>
+        <CartScreen />
         <CategoryChips />
         {/* <BookDetailScreen /> */}
         {/*  */}
@@ -57,6 +59,7 @@ export default function App() {
         </View>
       </ScrollView>
       <BottomTabBar />
+
       <FloatingCartButton />
     </SafeAreaView>
   );
