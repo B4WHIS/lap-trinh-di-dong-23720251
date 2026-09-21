@@ -34,11 +34,11 @@ const CartScreen = () => {
               style={{ width: 60, height: 60 }}
             />
             <View style={{ flex: 1, paddingHorizontal: 12 }}>
-              <Text>Tên sản phẩm</Text>
-              <Text>Số lượng</Text>
+              <Text>Tôi Thấy Hoa Vàng Trên Cỏ Xanh</Text>
+              <Text>Số lượng: 1</Text>
             </View>
             <View>
-              <Text>Giá</Text>
+              <Text>Giá: 120.000đ</Text>
             </View>
           </View>
         </View>
@@ -46,7 +46,7 @@ const CartScreen = () => {
       <View style={styles.checkout}>
         <Text>
           Tổng tiền:{" "}
-          <Text style={{ color: "red", fontWeight: "bold" }}>240.000đ</Text>
+          <Text style={{ color: "red", fontWeight: "bold" }}>120.000đ</Text>
         </Text>
         <TouchableOpacity style={styles.button}>
           <Text style={{ color: "#fff" }}>Thanh toán</Text>

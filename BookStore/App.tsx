@@ -8,59 +8,66 @@ import FloatingCartButton from "./components/FloatingCartButton";
 import BookDetailScreen from "./components/BookDetailScreen";
 import BottomTabBar from "./components/BottomTabBar";
 import CartScreen from "./components/CartScreen";
+import { useState } from "react";
 
 export default function App() {
+  const [currentTab, setCurrentTab] = useState("home");
+
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar style="auto" />
       <Header />
-      <ScrollView>
-        <CartScreen />
-        <CategoryChips />
-        {/* <BookDetailScreen /> */}
-        {/*  */}
-        <View style={styles.girdContainer}>
-          <BookGridCard
-            title="Tôi Thấy Hoa Vàng Trên Cỏ Xanh"
-            author="Nguyễn Nhật Ánh"
-            price="120.000₫"
-            coverUrl="https://www.netabooks.vn/Data/Sites/1/Product/17752/toi-thay-hoa-vang-tren-co-xanh.jpg"
-          />
-          <BookGridCard
-            title="Làm Bạn Với Bầu Trời"
-            author="Nguyễn Nhật Ánh"
-            price="187.000₫"
-            coverUrl="https://www.netabooks.vn/Data/Sites/1/Product/30286/lam-ban-voi-bau-troi-bia-cung-1.jpg"
-          />
-          <BookGridCard
-            title="Đảo Mộng Mơ"
-            author="Nguyễn Nhật Ánh"
-            price="70.000₫"
-            coverUrl="https://www.netabooks.vn/Data/Sites/1/Product/17752/toi-thay-hoa-vang-tren-co-xanh.jpg"
-          />
-          <BookGridCard
-            title="Tư Duy Chiến Lược Thực Chiến"
-            author="Seth Godin"
-            price="215.200₫"
-            coverUrl="https://www.netabooks.vn/Data/Sites/1/Product/80232/tu-duy-chien-luoc-thuc-chien-seth-godin.jpg"
-          />
-          <BookGridCard
-            title="MBA Bằng Hình - The Usual MBA"
-            author="Jason Barron"
-            price="174.400₫"
-            coverUrl="https://www.netabooks.vn/Data/Sites/1/Product/68744/mba-bang-hinh-the-usual-mba.jpg"
-          />
-          <BookGridCard
-            title="Giành Lại Tri Thức"
-            author="Michael F. D. Young"
-            price="135.000₫"
-            coverUrl="https://www.netabooks.vn/Data/Sites/1/Product/24554/gianh-lai-tri-thuc-01.jpg"
-          />
-        </View>
-      </ScrollView>
-      <BottomTabBar />
 
-      <FloatingCartButton />
+      {currentTab === "home" && (
+        <ScrollView>
+          <CategoryChips />
+          {/* <BookDetailScreen /> */}
+          {/*  */}
+          <View style={styles.girdContainer}>
+            <BookGridCard
+              title="Tôi Thấy Hoa Vàng Trên Cỏ Xanh"
+              author="Nguyễn Nhật Ánh"
+              price="120.000₫"
+              coverUrl="https://www.netabooks.vn/Data/Sites/1/Product/17752/toi-thay-hoa-vang-tren-co-xanh.jpg"
+            />
+            <BookGridCard
+              title="Làm Bạn Với Bầu Trời"
+              author="Nguyễn Nhật Ánh"
+              price="187.000₫"
+              coverUrl="https://www.netabooks.vn/Data/Sites/1/Product/30286/lam-ban-voi-bau-troi-bia-cung-1.jpg"
+            />
+            <BookGridCard
+              title="Đảo Mộng Mơ"
+              author="Nguyễn Nhật Ánh"
+              price="70.000₫"
+              coverUrl="https://www.netabooks.vn/Data/Sites/1/Product/17752/toi-thay-hoa-vang-tren-co-xanh.jpg"
+            />
+            <BookGridCard
+              title="Tư Duy Chiến Lược Thực Chiến"
+              author="Seth Godin"
+              price="215.200₫"
+              coverUrl="https://www.netabooks.vn/Data/Sites/1/Product/80232/tu-duy-chien-luoc-thuc-chien-seth-godin.jpg"
+            />
+            <BookGridCard
+              title="MBA Bằng Hình - The Usual MBA"
+              author="Jason Barron"
+              price="174.400₫"
+              coverUrl="https://www.netabooks.vn/Data/Sites/1/Product/68744/mba-bang-hinh-the-usual-mba.jpg"
+            />
+            <BookGridCard
+              title="Giành Lại Tri Thức"
+              author="Michael F. D. Young"
+              price="135.000₫"
+              coverUrl="https://www.netabooks.vn/Data/Sites/1/Product/24554/gianh-lai-tri-thuc-01.jpg"
+            />
+          </View>
+        </ScrollView>
+      )}
+      {currentTab === "cart" && <CartScreen />}
+      {currentTab === "detail" && <BookDetailScreen />}
+
+      <BottomTabBar currentTab={currentTab} onSelectTab={setCurrentTab} />
+      {currentTab === "home" && <FloatingCartButton />}
     </SafeAreaView>
   );
 }
