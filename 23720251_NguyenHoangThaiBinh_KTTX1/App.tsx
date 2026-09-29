@@ -30,13 +30,17 @@ export default function App() {
   const [refreshing, setRefreshing] = useState(false);
 
   const getMoives = async () => {
-    const res = await fetch(
-      "https://698316669c3efeb892a45947.mockapi.io/movies",
-    );
-    const data = await res.json();
-
-    setMoive(data);
-    setLoading(false);
+    try {
+      const res = await fetch(
+        "https://698316669c3efeb892a45947.mockapi.io/movies",
+      );
+      const data = await res.json();
+      setMoive(data);
+    } catch (error) {
+      console.log("Lỗi mạng:", error);
+    } finally {
+      setLoading(false);
+    }
   };
   useEffect(() => {
     getMoives();
