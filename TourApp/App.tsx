@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import {
   StyleSheet,
   Text,
@@ -8,6 +8,7 @@ import {
   FlatList,
   ActivityIndicator,
   Alert,
+  RefreshControl,
 } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
@@ -15,11 +16,12 @@ import { Tour, groupByCity, formatDate } from './utils/tour';
 import { INITIAL_TOURS } from './data';
 import TourItem from './components/TourItem';
 
-const API_URL = 'https://698316669c3efeb892a45947.mockapi.io/tours';
+const API_URL = 'https://6ace1c08f338359cf1c31d6f.mockapi.io/tours';
 
 export default function App() {
   const [tours, setTours] = useState<Tour[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
+  const [refreshing, setRefreshing] = useState<boolean>(false);
   const [searchText, setSearchText] = useState<string>('');
 
   const fetchTours = async () => {
@@ -35,12 +37,18 @@ export default function App() {
       setTours(INITIAL_TOURS);
     } finally {
       setLoading(false);
+      setRefreshing(false);
     }
   };
 
   useEffect(() => {
     fetchTours();
   }, []);
+
+  const onRefresh = async () => {
+    setRefreshing(true);
+    await fetchTours();
+  };
 
   const handlePressTour = (tour: Tour) => {
     Alert.alert(
@@ -49,14 +57,49 @@ export default function App() {
     );
   };
 
-  const handleToggleFavorite = (id: string, next: boolean) => {
+  const handleToggleFavorite = async (id: string, next: boolean) => {
     setTours((prev) =>
       prev.map((t) => (t.id === id ? { ...t, isFavorite: next } : t))
     );
+
+    try {
+      const res = await fetch(`${API_URL}/${id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ isFavorite: next }),
+      });
+
+      if (!res.ok) {
+        throw new Error('Lỗi cập nhật API');
+      }
+    } catch (error) {
+      setTours((prev) =>
+        prev.map((t) => (t.id === id ? { ...t, isFavorite: !next } : t))
+      );
+      Alert.alert(
+        'Lỗi cập nhật',
+        'Không thể cập nhật trạng thái yêu thích từ máy chủ. Đã hoàn tác!'
+      );
+    }
   };
 
-  const sections = groupByCity(tours);
-  const favoriteTours = tours.filter((t) => t.isFavorite);
+  const filteredTours = useMemo(() => {
+    const keyword = searchText.trim().toLowerCase();
+    if (!keyword) return tours;
+    return tours.filter((t) => t.name.toLowerCase().includes(keyword));
+  }, [tours, searchText]);
+
+  const sections = useMemo(() => {
+    return groupByCity(filteredTours).filter(
+      (section) => section.data.length > 0
+    );
+  }, [filteredTours]);
+
+  const favoriteTours = useMemo(() => {
+    return tours.filter((t) => t.isFavorite);
+  }, [tours]);
 
   const renderFavoriteHeader = () => (
     <View style={styles.favoriteSection}>
@@ -117,6 +160,20 @@ export default function App() {
               keyExtractor={(item) => item.id}
               stickySectionHeadersEnabled={true}
               ListHeaderComponent={renderFavoriteHeader}
+              refreshControl={
+                <RefreshControl
+                  refreshing={refreshing}
+                  onRefresh={onRefresh}
+                  colors={['#0066CC']}
+                />
+              }
+              ListEmptyComponent={
+                <View style={styles.emptyContainer}>
+                  <Text style={styles.emptyText}>
+                    Không tìm thấy tour phù hợp
+                  </Text>
+                </View>
+              }
               renderSectionHeader={({ section: { title, data } }) => (
                 <View style={styles.sectionHeader}>
                   <Text style={styles.sectionHeaderText}>
@@ -234,5 +291,15 @@ const styles = StyleSheet.create({
     fontSize: 15,
     fontWeight: 'bold',
     color: '#0052A3',
+  },
+  emptyContainer: {
+    paddingVertical: 36,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  emptyText: {
+    fontSize: 15,
+    color: '#777',
+    fontStyle: 'italic',
   },
 });
