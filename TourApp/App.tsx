@@ -5,6 +5,7 @@ import {
   View,
   TextInput,
   SectionList,
+  FlatList,
   ActivityIndicator,
   Alert,
 } from 'react-native';
@@ -55,6 +56,35 @@ export default function App() {
   };
 
   const sections = groupByCity(tours);
+  const favoriteTours = tours.filter((t) => t.isFavorite);
+
+  const renderFavoriteHeader = () => (
+    <View style={styles.favoriteSection}>
+      <Text style={styles.favoriteTitle}>
+        Tour yêu thích ({favoriteTours.length})
+      </Text>
+      {favoriteTours.length === 0 ? (
+        <Text style={styles.emptyFavoriteText}>Chưa có tour yêu thích</Text>
+      ) : (
+        <FlatList
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}
+          data={favoriteTours}
+          keyExtractor={(item) => 'fav-' + item.id}
+          ItemSeparatorComponent={() => <View style={styles.favSeparator} />}
+          renderItem={({ item }) => (
+            <TourItem
+              tour={item}
+              compact={true}
+              onPress={handlePressTour}
+              onToggleFavorite={handleToggleFavorite}
+            />
+          )}
+          contentContainerStyle={styles.favoriteListContent}
+        />
+      )}
+    </View>
+  );
 
   return (
     <SafeAreaProvider>
@@ -86,6 +116,7 @@ export default function App() {
               sections={sections}
               keyExtractor={(item) => item.id}
               stickySectionHeadersEnabled={true}
+              ListHeaderComponent={renderFavoriteHeader}
               renderSectionHeader={({ section: { title, data } }) => (
                 <View style={styles.sectionHeader}>
                   <Text style={styles.sectionHeaderText}>
@@ -96,6 +127,7 @@ export default function App() {
               renderItem={({ item }) => (
                 <TourItem
                   tour={item}
+                  compact={false}
                   onPress={handlePressTour}
                   onToggleFavorite={handleToggleFavorite}
                 />
@@ -159,6 +191,34 @@ const styles = StyleSheet.create({
     marginTop: 10,
     fontSize: 14,
     color: '#555',
+  },
+  favoriteSection: {
+    backgroundColor: '#fff',
+    paddingVertical: 14,
+    borderBottomWidth: 1,
+    borderBottomColor: '#eee',
+    marginBottom: 8,
+  },
+  favoriteTitle: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#D32F2F',
+    marginHorizontal: 16,
+    marginBottom: 10,
+  },
+  emptyFavoriteText: {
+    fontSize: 14,
+    color: '#888',
+    fontStyle: 'italic',
+    marginHorizontal: 16,
+    paddingVertical: 8,
+  },
+  favoriteListContent: {
+    paddingHorizontal: 16,
+    paddingBottom: 4,
+  },
+  favSeparator: {
+    width: 12,
   },
   listContent: {
     paddingBottom: 20,
