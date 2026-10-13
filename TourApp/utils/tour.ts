@@ -32,3 +32,14 @@ export function groupByCity(tours: Tour[]): TourSection[] {
     data: groups[city].sort((a, b) => a.departure.localeCompare(b.departure)),
   }));
 }
+
+export function formatDate(dateString: string): string {
+  const [year, month, day] = dateString.split('-');
+  return `${day}/${month}/${year}`;
+}
+
+export function getSeatLabel(seats: number): string {
+  if (seats === 0) return 'Hết chỗ';
+  if (seats >= 1 && seats <= 3) return `Chỉ còn ${seats} chỗ`;
+  return `Còn ${seats} chỗ`;
+}
